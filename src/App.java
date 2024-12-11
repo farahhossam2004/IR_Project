@@ -1,12 +1,14 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        int NoofDocumens = 10;
+        Scanner input = new Scanner(System.in);
+        
+        int NoofDocumens = Constants.numberOfDocuments;
         HashMap<String, HashMap<Integer, ArrayList<Integer>>> wordMap;
         HashMap<String, ArrayList<Integer>> termFreq = new HashMap<>();
         HashMap<String, ArrayList<Double>> weightedTermFrq = new HashMap<>();
@@ -17,7 +19,7 @@ public class App {
         HashMap<String, ArrayList<Double>> normalizedTFinIDF = new HashMap<>();
         
         try {
-            wordMap = readfile.processFile("E:\\IR_Project\\docs\\output2.txt");
+            wordMap = readfile.processFile(Constants.filepath);
 
             boolean isRunning = true;
 
@@ -88,12 +90,25 @@ public class App {
                         Helpers.showMatrix(normalizedTFinIDF);
                         break;
                     case 7:
-                    ArrayList<String> query = new ArrayList<>();
-                    query.add("fools");
-                    query.add("in");
-                    query.add("fear");
+                            System.out.println("Enter the Query You Want : ");
+                            String Query = input.nextLine();
+                            ArrayList<String> QueryArray = new ArrayList<>();
+                            String word ="";
+                            System.out.println("Array" + QueryArray + "word" + word);
+                            for(int i = 0 ; i < Query.length() ; i++){
+                                if(Query.charAt(i)!=' '){
+                                    word += Query.charAt(i);
+                                }else{
+                                    QueryArray.add(word);
+                                    word="";
+                                }
+                            }
+                            if (!word.isEmpty()) {
+                                QueryArray.add(word);
+                            }
+                            System.out.println("Array of the query : "+ QueryArray);
 
-                    queries.queryProcessing(query);
+                            queries.queryProcessing(QueryArray);
                     break;
                     case 0:
                         isRunning = false;

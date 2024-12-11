@@ -15,10 +15,32 @@ public class Helpers {
         System.out.println("4- Display TF * IDF Matrix ");
         System.out.println("5- Display Documemt length Matrix");
         System.out.println("6- Display Normalized TF * IDF");
+        System.out.println("7- Enter a Query");
         System.out.println("0- Exit");
         System.out.print("\nEnter your choice: ");
         choice = input.nextInt();
         return choice;
+    }
+
+    static ArrayList<String> QueryEntry(){
+        
+        System.out.println("Enter the Query You Want : ");
+                    String Query = input.nextLine();
+                    ArrayList<String> QueryArray = new ArrayList<>();
+                    String word ="";
+                    for(int i = 0 ; i < Query.length() ; i++){
+                        if(Query.charAt(i)!=' '){
+                            word += Query.charAt(i);
+                        }else{
+                            QueryArray.add(word);
+                            word="";
+                        }
+                    }
+                    if (!word.isEmpty()) {
+                        QueryArray.add(word);
+                    }
+
+                return QueryArray;
     }
 
     static void showMatrix(HashMap<String, ArrayList<Double>> termFrequency) {
