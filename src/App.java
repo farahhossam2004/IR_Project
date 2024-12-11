@@ -17,7 +17,7 @@ public class App {
         HashMap<String, ArrayList<Double>> normalizedTFinIDF = new HashMap<>();
         
         try {
-            wordMap = readfile.processFile("D:\\Junior Level\\Data Storage and Retrival(IR)\\IR_Project\\docs\\output2.txt");
+            wordMap = readfile.processFile("E:\\IR_Project\\docs\\output2.txt");
 
             boolean isRunning = true;
 
@@ -87,7 +87,14 @@ public class App {
                         normalizedTFinIDF = DocumentsCalculations.computeNormalizedTFIDF(termFreqInIDF, docLength);
                         Helpers.showMatrix(normalizedTFinIDF);
                         break;
+                    case 7:
+                    ArrayList<String> query = new ArrayList<>();
+                    query.add("fools");
+                    query.add("in");
+                    query.add("fear");
 
+                    queries.queryProcessing(query);
+                    break;
                     case 0:
                         isRunning = false;
                         break;
